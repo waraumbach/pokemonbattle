@@ -4,6 +4,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { useState } from 'react'
 import AllPokemon from './components/AllPokemon';
+import Pokemon from './components/Pokemon';
 
 import './App.css'
 
@@ -18,7 +19,8 @@ function App() {
     <>
 
       <h1>This is my Pokemon Application</h1>
-      <AllPokemon />
+
+
     </>
   )
 }
