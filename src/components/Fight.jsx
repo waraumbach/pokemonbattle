@@ -9,26 +9,33 @@ function Fight() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
   const [battleResult, setBattleResult] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetching list of Pokemon from API
+
+  const fetchPokemon = async () => {
+    try {
+      if (state && state.selectedPokemon) {
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/${state.selectedPokemon}`
+        );
+        setPokemonList(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching Pokemon:", error);
+    }
+  };
+
   useEffect(() => {
-    axios
-      .get(`https://pokeapi.co/api/v2/${state.id}`)
-      .then((response) => {
-        setPokemonList(response.data.results);
-      })
-      .catch((error) => {
-        console.error("Error fetching Pokemon:", error);
-      });
+    fetchPokemon();
   }, []);
 
-  // Function to select a random Pokemon from the list
   const selectRandomPokemon = () => {
     const randomIndex = Math.floor(Math.random() * pokemonList.length);
     setSelectedPokemon(pokemonList[randomIndex]);
   };
 
-  // Function to start a battle with a randomly selected enemy Pokemon
   const startBattle = () => {
     selectRandomPokemon();
     axios
@@ -53,9 +60,7 @@ function Fight() {
         <div>
           <h2>Your Pokemon: {selectedPokemon.name}</h2>
           <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-              selectedPokemon.url.split("/")[6]
-            }.png`}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon.id}.png`}
             alt={selectedPokemon.name}
           />
         </div>

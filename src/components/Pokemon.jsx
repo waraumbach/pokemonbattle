@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./Pokemon.css";
 
 const Pokemon = () => {
   let navigate = useNavigate();
@@ -42,37 +43,28 @@ const Pokemon = () => {
 
   return (
     <>
-      <div
-        style={{
-          textAlign: "center",
-          border: " 15px solid #F44E3F",
-          marginBottom: "50px",
-          width: "100%",
-        }}
-      >
-        <p>I am {pokemon.name}</p>
-        <img
-          style={{
-            width: "500px",
-            height: "500px",
-            border: "5px solid green",
-          }}
-          src={pokemon.sprites.front_default}
-        />
-
-        <p>Abilities: {pokemonInfo.abilities[0].ability.name}</p>
-        <p>Abilities:{pokemonInfo.abilities[1].ability.name}</p>
-        <p>Moves: {pokemonInfo.moves[0].move.name}</p>
-        <p>Moves: {pokemonInfo.moves[20].move.name}</p>
-        <p>Hp: {pokemonInfo.stats[0].base_stat}</p>
-        <p>
-          Stats: {pokemonInfo.stats[3].base_stat} -{" "}
-          {pokemonInfo.stats[3].stat.name}
-        </p>
-        <p>
-          Stats: {pokemonInfo.stats[4].base_stat} -{" "}
-          {pokemonInfo.stats[4].stat.name}
-        </p>
+      <div className="pokemon-container">
+        <h1>I am {pokemon.name}</h1>
+        <img src={pokemon.sprites.front_default} />
+        <div className="stats-pokemon">
+          <h3>HP: {pokemonInfo.stats[0].base_stat}</h3>
+          <h3>Abilities: </h3> <p> {pokemonInfo.abilities[0].ability.name}</p> +
+          <p> {pokemonInfo.abilities[1].ability.name}</p>
+          <h3>Moves: </h3> <p> {pokemonInfo.moves[0].move.name}</p> +
+          <p> {pokemonInfo.moves[20].move.name}</p>
+          <h3>Stats: </h3>{" "}
+          <p>
+            {pokemonInfo.stats[3].base_stat} - {pokemonInfo.stats[3].stat.name}
+          </p>{" "}
+          +
+          <p>
+            {pokemonInfo.stats[2].base_stat} - {pokemonInfo.stats[2].stat.name}
+          </p>{" "}
+          +
+          <p>
+            {pokemonInfo.stats[4].base_stat} - {pokemonInfo.stats[4].stat.name}{" "}
+          </p>
+        </div>
       </div>
       <div
         style={{
