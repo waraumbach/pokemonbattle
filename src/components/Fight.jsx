@@ -3,6 +3,7 @@
 // import { useState, useEffect } from "react";
 // import axios from "axios";
 // import { useLocation } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 // function Fight() {
 //   let { state } = useLocation();
@@ -13,6 +14,8 @@
 //   const [loading, setLoading] = useState(true);
 //   const [error, setError] = useState(null);
 //   const [battleStarted, setBattleStarted] = useState(false);
+
+//   let navigate = useNavigate();
 
 //   const fetchPokemon = async () => {
 //     try {
@@ -58,6 +61,10 @@
 //     }
 //   }
 
+//   const refillStrength = (pokemon, setPokemonHP) => {
+//     setPokemonHP(prevHP => prevHP + 20);
+//   }
+
 //   useEffect(() => {
 //     fetchPokemon();
 //     fetchRandomPokemon();
@@ -71,18 +78,20 @@
 //       <div>
 //         <h1>Pokemon Game</h1>
 
-//         <button onClick={startBattle} disabled={battleStarted} >Start Battle</button>
+//         {!battleStarted && <button onClick={startBattle}>Start Battle</button>}
 //         {battleStarted && (
-//           <>
+//           <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
 //             <button onClick={() => attack(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Attack</button>
+//             <button onClick={() => refillStrength(selectedPokemon.name, setSelectedPokemonHP)}>Refill Strength</button>
 //             <button onClick={() => attack(randomPokemon.name, selectedPokemonHP, setSelectedPokemonHP)}>Counter Attack</button>
-//           </>
+
+//           </div>
 //         )}
 //         <div style={{ display: 'flex' }}>
 //           {selectedPokemon && (
 //             <div>
 //               <h2>Your Pokemon: {selectedPokemon.name} (HP: {selectedPokemonHP})</h2>
-//               <img
+//               <img className="pokemon-image"
 //                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon.id}.png`}
 //                 alt={selectedPokemon.name}
 //               />
@@ -92,7 +101,7 @@
 //           {randomPokemon && (
 //             <div>
 //               <h2>Opponent's Pokemon: {randomPokemon.name} (HP: {randomPokemonHP})</h2>
-//               <img
+//               <img className="pokemon-image"
 //                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokemon.id}.png`}
 //                 alt={randomPokemon.name}
 //               />
@@ -100,6 +109,7 @@
 //           )}
 //         </div>
 //       </div>
+//       <button onClick={() => navigate('/pokemons')}>Use another Pokemon</button>
 //     </>
 //   );
 // }
@@ -109,7 +119,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function Fight() {
   let { state } = useLocation();
@@ -120,8 +129,6 @@ function Fight() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [battleStarted, setBattleStarted] = useState(false);
-
-  let navigate = useNavigate();
 
   const fetchPokemon = async () => {
     try {
@@ -168,13 +175,24 @@ function Fight() {
   }
 
   const refillStrength = (pokemon, setPokemonHP) => {
-    setPokemonHP(prevHP => prevHP + 20);
+    if (selectedPokemonHP < randomPokemonHP) {
+      setPokemonHP(prevHP => prevHP + 20);
+    }
   }
 
   useEffect(() => {
     fetchPokemon();
     fetchRandomPokemon();
   }, []);
+
+  useEffect(() => {
+    if (battleStarted) {
+      const timer = setTimeout(() => {
+        attack(randomPokemon.name, selectedPokemonHP, setSelectedPokemonHP);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedPokemonHP]);
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error</p>
@@ -189,8 +207,6 @@ function Fight() {
           <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
             <button onClick={() => attack(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Attack</button>
             <button onClick={() => refillStrength(selectedPokemon.name, setSelectedPokemonHP)}>Refill Strength</button>
-            <button onClick={() => attack(randomPokemon.name, selectedPokemonHP, setSelectedPokemonHP)}>Counter Attack</button>
-
           </div>
         )}
         <div style={{ display: 'flex' }}>
@@ -215,7 +231,6 @@ function Fight() {
           )}
         </div>
       </div>
-      <button onClick={() => navigate('/pokemons')}>Use another Pokemon</button>
     </>
   );
 }
