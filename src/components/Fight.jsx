@@ -35,46 +35,73 @@ function Fight() {
   }, []);
 
   if (loading) return <p>Loading...</p>
+  const fetchRandomPokemon = async () => {
+    const response = await axios.get('https://pokeapi.co/api/v2/pokemon/');
+    const randomPokemon = response.data.results[Math.floor(Math.random() * 150)];
+    return randomPokemon;
+  }
+  const fetchPokemonDetails = async (pokemonName) => {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+    return response.data;
+  }
+  const simulateFight = (myPokemon, opponentPokemon) => {
+    const myPokemonAttack = myPokemon.stats[0].base_stat;
+    const opponentPokemonAttack = opponentPokemon.stats[0].base_stat;
 
-  const randomPokemon = () => {
-    const randomIndex = Math.floor(Math.random() * pokemonList.length);
-    setSelectedPokemon(pokemonList[randomIndex]);
-
-  };
-
-  const startBattle = async () => {
-    try {
-      const responseOpponent = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${Math.ceil(Math.random() * 151)}}`
-      )
-      console.log(responseOpponent);
+    if (myPokemonAttack > opponentPokemonAttack) {
+      return `${myPokemon.name} wins!`;
+    } else if (opponentPokemonAttack > myPokemonAttack) {
+      return `${opponentPokemon.name} wins!`;
+    } else {
+      return "It's a tie!";
     }
-  
   }
 
 
 
 
 
+  // const randomPokemon = () => {
+  //   const randomIndex = Math.floor(Math.random() * pokemonList.length);
+  //   setSelectedPokemon(pokemonList[randomIndex]);
+
+  // };
+
+  // const startBattle = async () => {
+  //   try {
+  //     const responseOpponent = await axios.get(
+  //       `https://pokeapi.co/api/v2/pokemon/${Math.ceil(Math.random() * 151)}}`
+  //     )
+  //     console.log(responseOpponent);
+  //   }catch (error)
+
+  // }
 
 
 
   return (
-    <div>
-      <h1>Pokemon Game</h1>
+    <>
+      <div>
+        <h1>Pokemon Game</h1>
 
-      <button>Start Battle</button>
-      {selectedPokemon && (
+        <button>Start Battle</button>
+        {selectedPokemon && (
+          <div>
+            <h2>Your Pokemon: {selectedPokemon.name}</h2>
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon.id}.png`}
+              alt={selectedPokemon.name}
+            />
+          </div>
+
+        )}
         <div>
-          <h2>Your Pokemon: {selectedPokemon.name}</h2>
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon.id}.png`}
-            alt={selectedPokemon.name}
-          />
-        </div>
-      )}
+          <h2>Enemy Pokemon</h2>
 
-    </div>
+        </div>
+
+      </div>
+    </>
   );
 }
 
