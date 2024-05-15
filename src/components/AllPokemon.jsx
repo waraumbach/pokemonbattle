@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios, { all } from "axios";
 import { Link } from "react-router-dom";
 
+
+
 const AllPokemon = () => {
   const [allPokemon, setAllPokemon] = useState([]);
   const { error, setError } = useState(null);
@@ -10,11 +12,8 @@ const AllPokemon = () => {
   const fetchAllPokemon = async () => {
     try {
       const response = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=50"
+        "https://pokeapi.co/api/v2/pokemon?limit=151"
       );
-      // const pokemonDetails = await axios.get('https://pokeapi.co/api/v2/pokemon/1')
-      // console.log(pokemonDetails.data.abilities[0])
-
       console.log(response.data.results);
       setAllPokemon(response.data.results);
     } catch (error) {
@@ -57,7 +56,9 @@ const AllPokemon = () => {
               }}
               key={index}
             >
-              <Link to={`/${index + 1}`}>{allPokemon.name}</Link>
+              <Link to={`/${index + 1}`}>{allPokemon.name}
+
+              </Link>
             </li>
           );
         })}

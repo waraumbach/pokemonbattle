@@ -45,7 +45,7 @@ const Pokemon = () => {
     <>
       <div className="pokemon-container">
         <h1>I am {pokemon.name}</h1>
-        <img src={pokemon.sprites.front_default} />
+        <img className="pokemon-image" src={pokemon.sprites.front_default} />
         <div className="stats-pokemon">
           <h3>HP: {pokemonInfo.stats[0].base_stat}</h3>
           <h3>Abilities: </h3> <p> {pokemonInfo.abilities[0].ability.name}</p> +
@@ -73,7 +73,7 @@ const Pokemon = () => {
           justifyContent: "space-between",
         }}
       >
-        <button>Select a new Pokemon</button>
+        <button onClick={() => navigate('/pokemons')}>Select a new Pokemon</button>
         <Link to="/fight" state={{ pokemonID: pokemonInfo.id }}>
           Fight
         </Link>

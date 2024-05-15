@@ -17,8 +17,7 @@ h3 {
 p {
   color: #000000;
 }
-
-img {
+.pokemon-image {
   width: 500px;
   height: 500px;
   border: 10px solid green;
