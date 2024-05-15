@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 
 function Fight() {
   let { state } = useLocation();
-  console.log(state);
   const [pokemonList, setPokemonList] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
@@ -16,14 +15,18 @@ function Fight() {
 
   const fetchPokemon = async () => {
     try {
-      if (state && state.selectedPokemon) {
+      if (state) {
         const response = await axios.get(
-          `https://pokeapi.co/api/v2/${state.selectedPokemon}`
+          `https://pokeapi.co/api/v2/pokemon/${state.pokemonID}`
         );
-        setPokemonList(response.data);
+        console.log(response)
+        setSelectedPokemon(response.data);
       }
     } catch (error) {
       console.error("Error fetching Pokemon:", error);
+    }
+    finally {
+      setLoading(false)
     }
   };
 
@@ -31,31 +34,36 @@ function Fight() {
     fetchPokemon();
   }, []);
 
-  const selectRandomPokemon = () => {
+  if (loading) return <p>Loading...</p>
+
+  const randomPokemon = () => {
     const randomIndex = Math.floor(Math.random() * pokemonList.length);
     setSelectedPokemon(pokemonList[randomIndex]);
+
   };
 
-  const startBattle = () => {
-    selectRandomPokemon();
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${Math.ceil(Math.random() * 15)}`)
-      .then((response) => {
-        setEnemyPokemon(response.data);
-        // Simulate battle result (for demonstration purposes)
-        const result = Math.random() < 0.5 ? "You win!" : "You lose!";
-        setBattleResult(result);
-      })
-      .catch((error) => {
-        console.error("Error fetching enemy Pokemon:", error);
-      });
-  };
+  const startBattle = async () => {
+    try {
+      const responseOpponent = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${Math.ceil(Math.random() * 151)}}`
+      )
+      console.log(responseOpponent);
+    }
+  
+  }
+
+
+
+
+
+
+
 
   return (
     <div>
       <h1>Pokemon Game</h1>
 
-      <button onClick={startBattle}>Start Battle</button>
+      <button>Start Battle</button>
       {selectedPokemon && (
         <div>
           <h2>Your Pokemon: {selectedPokemon.name}</h2>
@@ -65,16 +73,7 @@ function Fight() {
           />
         </div>
       )}
-      {enemyPokemon && (
-        <div>
-          <h2>Enemy Pokemon: {enemyPokemon.name}</h2>
-          <img
-            src={enemyPokemon.sprites.front_default}
-            alt={enemyPokemon.name}
-          />
-        </div>
-      )}
-      {battleResult && <h3>{battleResult}</h3>}
+
     </div>
   );
 }
