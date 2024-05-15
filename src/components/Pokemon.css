@@ -1,4 +1,4 @@
-.pokemon-container {
+/* .pokemon-container {
   text-align: center;
   border: 15px solid #f44e3f;
   margin-bottom: 50px;
@@ -30,4 +30,156 @@ p {
   margin-top: 10px;
   align-items: start;
   margin: 30px;
+}
+.buttons{
+  display: flex;
+  justify-content:space-evenly;
+  margin: 30px;
+} */
+
+/* .pokemon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.pokemon-image {
+  width: 100%;
+  height: auto;
+}
+
+.stats-pokemon {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.bar {
+  background-color: #4CAF50;
+  height: 20px;
+  width: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.bar.hp {
+  width: calc((100% / 255) * var(--hp));
+}
+
+.bar.special-attack,
+.bar.special-defense {
+  width: calc((100% / 255) * var(--special));
+}
+
+.bar.defense {
+  width: calc((100% / 255) * var(--defense));
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+} */
+
+.pokemon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.pokemon-image {
+  width: 500px;
+  height: 500px;
+  border: 10px solid green;
+}
+
+.stats-pokemon {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.bar {
+  background-color: #4CAF50;
+  height: 20px;
+  width: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.bar.hp {
+  width: calc((100% / 255) * var(--hp));
+}
+
+.bar.ability {
+  width: calc((100% / 2) * var(--ability)); /* assuming max 2 abilities */
+}
+
+.bar.moves {
+  width: calc((100% / 100) * var(--moves)); /* assuming max 100 moves */
+}
+
+.bar.stat-0,
+.bar.stat-1,
+.bar.stat-2,
+.bar.stat-3,
+.bar.stat-4 {
+  width: calc((100% / 255) * var(--stat-0)); /* assuming max 255 for each stat */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+.buttons{
+  display: flex;
+  justify-content:space-evenly;
+  margin: 30px;
+} 
+
+
+
+
+
+
+.hp-bar {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.hp-bar-inner {
+  height: 20px;
+  width: 100%;
+  background-color: #4CAF50;
+  transition: width 0.3s ease-in-out;
+}
+
+.hp-bar-inner.low {
+  background-color: #FFA500; /* Orange */
+}
+
+.hp-bar-inner.critical {
+  background-color: #FF0000; /* Red */
 }
