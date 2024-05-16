@@ -142,9 +142,12 @@ const Pokemon = () => {
       </div>
       <div className="button-container">
         <button onClick={() => navigate('/pokemons')}>Select a new Pokemon</button>
-        <Link to="/fight" state={{ pokemonID: pokemonInfo.id }}>
+        <button>
+       <Link to="/fight" state={{ pokemonID: pokemonInfo.id }} style={{ textDecoration: 'none', color: 'red' }}>
           Fight
-        </Link>
+        </Link> 
+        </button>
+        
       </div>
     </>
 
