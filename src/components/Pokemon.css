@@ -125,6 +125,7 @@ p {
 .stat {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 10px;
   background-color: gray;
   padding: 10px;
@@ -150,32 +151,33 @@ p {
 }
 
 .bar.ability {
-  width: calc((100% / 2) * var(--ability)); /* assuming max 2 abilities */
+  width: calc((30% / 2) * var(--ability)); /* assuming max 2 abilities */
   background-color: yellow;
 }
 
 .bar.moves {
   background-color: rgba(102, 102, 229, 0.935);
-  width: calc((100% / 100) * var(--moves)); /* assuming max 100 moves */
+  width: calc((70% / 100) * var(--moves)); /* assuming max 100 moves */
 }
 
 .bar.stat-0{
   background-color: red;
-  width: calc((100% / 100) * var(--stat-0)); /* assuming max 255 for each stat */
+  width: calc((100% / 120) * var(--stat-0)); /* assuming max 255 for each stat */
 
 }
 
 .bar.stat-1{
   background-color: green;
-  width: calc((100% / 100) * var(--stat-1)); /* assuming max 255 for each stat */
+  width: calc((100% / 120) * var(--stat-1)); /* assuming max 255 for each stat */
 
 }
 
 
 .bar.stat-2{
   background-color: red;
-  width: calc((100% / 80) * var(--stat-2)); /* assuming max 255 for each stat */
-
+  width: calc((100% / 40) * var(--stat-2)); /* assuming max 255 for each stat */
+  
+  
 }
 .bar.stat-3{
   background-color: green;
@@ -184,7 +186,7 @@ p {
 }
 .bar.stat-4 {
   background-color: aquamarine;
-  width: calc((100% / 10) * var(--stat-4)); /* assuming max 255 for each stat */
+  width: calc((99% / 100) * var(--stat-4)); /* assuming max 255 for each stat */
 
 }
 
