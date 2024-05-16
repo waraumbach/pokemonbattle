@@ -145,6 +145,7 @@ p {
 
 .bar.hp {
   width: calc((100% / 100) * var(--hp));
+  box-sizing: border-box;
   
 }
 
