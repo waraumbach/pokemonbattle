@@ -134,7 +134,7 @@ p {
 }
 
 .bar {
-  background-color:gray;
+  
   box-sizing: border-box;
   height: 20px;
   width: 0;
@@ -144,6 +144,7 @@ p {
 }
 
 .bar.hp {
+  background-color: greenyellow;
   width: calc((100% / 100) * var(--hp));
   box-sizing: border-box;
   
