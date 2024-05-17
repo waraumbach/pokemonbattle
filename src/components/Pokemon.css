@@ -1,6 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* .pokemon-container {
   text-align: center;
   border: 15px solid #f44e3f;

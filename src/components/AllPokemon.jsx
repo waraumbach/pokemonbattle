@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios, { all } from "axios";
 import { Link } from "react-router-dom";
+import { Card } from "@mui/material";
 
 
 
@@ -12,7 +13,7 @@ const AllPokemon = () => {
   const fetchAllPokemon = async () => {
     try {
       const response = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=50"
+        "https://pokeapi.co/api/v2/pokemon?limit=56"
       );
       console.log(response.data.results);
       setAllPokemon(response.data.results);
@@ -48,18 +49,21 @@ const AllPokemon = () => {
       >
         {allPokemon.map((allPokemon, index) => {
           return (
-            <li
-              style={{
-                padding: "15px",
-                border: "4px solid #0072BB",
-                margin: "10px",
-              }}
-              key={index}
-            >
-              <Link to={`/${index + 1}`}>{allPokemon.name}
+            <Card style={{ width: '150px', backgroundColor: 'black', margin: '8px' }}>
+              <li
+                style={{
+                  padding: "15px",
+                  border: "4px solid #0072BB",
+                  margin: "10px",
+                }}
+                key={index}
+              >
+                <Link to={`/${index + 1}`}>{allPokemon.name}
+                  <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`} alt={allPokemon.name} />
 
-              </Link>
-            </li>
+                </Link>
+              </li>
+            </Card>
           );
         })}
       </ul>

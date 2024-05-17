@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./Pokemon.css";
+import { Card } from "@mui/material";
 
 const Pokemon = () => {
   let navigate = useNavigate();
@@ -108,46 +109,49 @@ const Pokemon = () => {
     //   </div>
     // </>
     <>
-      <div className="pokemon-container">
-        <h1>I am {pokemon.name}</h1>
-        <img className="pokemon-image" src={pokemon.sprites.front_default} />
-        <div className="stats-pokemon">
-          <div className="stat">
-            <span>HP:</span>
-            <div className="bar hp" style={{ '--hp': pokemonInfo.stats[0].base_stat }}></div>
-            <span>{pokemonInfo.stats[0].base_stat}</span>
-          </div>
-          <div className="stat">
-            <span>Abilities:</span>
-            <div className="bar ability" style={{ '--ability': pokemonInfo.abilities.length }}></div>
-            <span>{pokemonInfo.abilities[0].ability.name}</span>
-
-            {/* , {pokemonInfo.abilities[1]?.ability.name} */}
-          </div>
-          <div className="stat">
-            <span>Moves:</span>
-            <div className="bar moves" style={{ '--moves': pokemonInfo.moves.length }}></div>
-            <span>{pokemonInfo.moves[0].move.name}</span>
-
-            {/* ,{pokemonInfo.moves[20]?.move.name} */}
-          </div>
-          {pokemonInfo.stats.slice(1).map((stat, index) => (
-            <div key={index} className="stat">
-              <span>{stat.stat.name}:</span>
-              <div className={`bar stat-${index}`} style={{ [`--stat-${index}`]: stat.base_stat }}></div>
-              <span>{stat.base_stat}</span>
+      <Card style={{ width: '500px', border: '20px solid black', borderRadius: '10px' }}>
+        <div className="pokemon-container">
+          <h1>I am {pokemon.name}</h1>
+          <img className="pokemon-image" src={pokemon.sprites.front_default} />
+          <div className="stats-pokemon">
+            <div className="stat">
+              <span>HP:</span>
+              <div className="bar hp" style={{ '--hp': pokemonInfo.stats[0].base_stat }}></div>
+              <span>{pokemonInfo.stats[0].base_stat}</span>
             </div>
-          ))}
+            <div className="stat">
+              <span>Abilities:</span>
+              <div className="bar ability" style={{ '--ability': pokemonInfo.abilities.length }}></div>
+              <span>{pokemonInfo.abilities[0].ability.name}</span>
+
+              {/* , {pokemonInfo.abilities[1]?.ability.name} */}
+            </div>
+            <div className="stat">
+              <span>Moves:</span>
+              <div className="bar moves" style={{ '--moves': pokemonInfo.moves.length }}></div>
+              <span>{pokemonInfo.moves[0].move.name}</span>
+
+              {/* ,{pokemonInfo.moves[20]?.move.name} */}
+            </div>
+            {pokemonInfo.stats.slice(1).map((stat, index) => (
+              <div key={index} className="stat">
+                <span>{stat.stat.name}:</span>
+                <div className={`bar stat-${index}`} style={{ [`--stat-${index}`]: stat.base_stat }}></div>
+                <span>{stat.base_stat}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+
+      </Card>
       <div className="button-container">
         <button onClick={() => navigate('/pokemons')}>Select a new Pokemon</button>
         <button>
-       <Link to="/fight" state={{ pokemonID: pokemonInfo.id }} style={{ textDecoration: 'none', color: 'red' }}>
-          Fight
-        </Link> 
+          <Link to="/fight" state={{ pokemonID: pokemonInfo.id }} style={{ textDecoration: 'none', color: 'red' }}>
+            Fight
+          </Link>
         </button>
-        
+
       </div>
     </>
 
