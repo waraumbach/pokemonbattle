@@ -172,6 +172,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Card } from "@mui/material";
 
 function Fight() {
   let { state } = useLocation();
@@ -273,50 +274,105 @@ function Fight() {
 
   return (
     <>
-      <div>
-        <h1>Pokemon Game</h1>
+      {/* <Card>
+        <div>
+          <h1>Pokemon Game</h1>
 
-        {!battleStarted && <button onClick={startBattle}>Start Battle</button>}
-        {battleStarted && (
-          <div className="buttons">
-            <button onClick={() => attackScratch(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Scratch</button>
-            <button onClick={() => attackGrowl(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Growl</button>
-            <button onClick={() => attackEmber(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Ember</button>
-            <button onClick={() => attackOther(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Other</button>
-            <button onClick={() => refillStrength(selectedPokemon.name, setSelectedPokemonHP, randomPokemonHP, setRandomPokemonHP)}>Refill Strength</button>
+          {!battleStarted && <button onClick={startBattle}>Start Battle</button>}
+          {battleStarted && (
+            <div className="buttons">
+              <button onClick={() => attackScratch(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Scratch</button>
+              <button onClick={() => attackGrowl(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Growl</button>
+              <button onClick={() => attackEmber(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Ember</button>
+              <button onClick={() => attackOther(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Other</button>
+              <button onClick={() => refillStrength(selectedPokemon.name, setSelectedPokemonHP, randomPokemonHP, setRandomPokemonHP)}>Refill Strength</button>
+            </div>
+          )}
+
+          <div style={{ display: 'flex' }}>
+            {selectedPokemon && (
+              <div>
+                <h2>Your Pokemon: {selectedPokemon.name}</h2>
+                <div className="hp-bar">
+                  <div className={`hp-bar-inner ${selectedPokemonHP <= 50 ? 'low' : ''} ${selectedPokemonHP <= 20 ? 'critical' : ''}`} style={{ width: `${selectedPokemonHP}%` }}></div>
+                </div>
+                <img className="pokemon-image"
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon.id}.png`}
+                  alt={selectedPokemon.name}
+                />
+              </div>
+            )}
+            <h2>VS</h2>
+            {randomPokemon && (
+              <div>
+                <h2>Opponent's Pokemon: {randomPokemon.name}</h2>
+                <div className="hp-bar">
+                  <div className={`hp-bar-inner ${randomPokemonHP <= 50 ? 'low' : ''} ${randomPokemonHP <= 20 ? 'critical' : ''}`} style={{ width: `${randomPokemonHP}%` }}></div>
+                </div>
+                <img className="pokemon-image"
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokemon.id}.png`}
+                  alt={randomPokemon.name}
+                />
+              </div>
+            )}
           </div>
-        )}
-
-        <div style={{ display: 'flex' }}>
-          {selectedPokemon && (
-            <div>
-              <h2>Your Pokemon: {selectedPokemon.name}</h2>
-              <div className="hp-bar">
-                <div className={`hp-bar-inner ${selectedPokemonHP <= 50 ? 'low' : ''} ${selectedPokemonHP <= 20 ? 'critical' : ''}`} style={{ width: `${selectedPokemonHP}%` }}></div>
-              </div>
-              <img className="pokemon-image"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon.id}.png`}
-                alt={selectedPokemon.name}
-              />
-            </div>
-          )}
-          <h2>VS</h2>
-          {randomPokemon && (
-            <div>
-              <h2>Opponent's Pokemon: {randomPokemon.name}</h2>
-              <div className="hp-bar">
-                <div className={`hp-bar-inner ${randomPokemonHP <= 50 ? 'low' : ''} ${randomPokemonHP <= 20 ? 'critical' : ''}`} style={{ width: `${randomPokemonHP}%` }}></div>
-              </div>
-              <img className="pokemon-image"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokemon.id}.png`}
-                alt={randomPokemon.name}
-              />
-            </div>
-          )}
+          <p style={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>{battleMessage}</p>
         </div>
-        <p style={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>{battleMessage}</p>
-      </div>
-      <button style={{ marginTop: '20px', padding: '10px' }} onClick={() => navigate('/pokemons')}>Select another Pokemon</button>
+        <button style={{ marginTop: '20px', padding: '10px' }} onClick={() => navigate('/pokemons')}>Select another Pokemon</button>
+      </Card> */}
+      <Card>
+        <div>
+          <h1>Pokemon Game</h1>
+
+          {!battleStarted && <button onClick={startBattle}>Start Battle</button>}
+
+          <div style={{ display: 'flex' }}>
+            {selectedPokemon && (
+              <div>
+                <h2>Your Pokemon: {selectedPokemon.name}</h2>
+                <div className="hp-bar">
+                  <div className={`hp-bar-inner ${selectedPokemonHP <= 50 ? 'low' : ''} ${selectedPokemonHP <= 20 ? 'critical' : ''}`} style={{ width: `${selectedPokemonHP}%` }}></div>
+                </div>
+                <img className="pokemon-image"
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon.id}.png`}
+                  alt={selectedPokemon.name}
+                />
+                {battleStarted && (
+                  <div style={{ display: 'flex', }} className="buttons">
+                    <button onClick={() => attackScratch(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Scratch</button>
+                    <button onClick={() => attackGrowl(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Growl</button>
+                    <button onClick={() => attackEmber(selectedPokemon.name, randomPokemonHP, setRandomPokemonHP)}>Ember</button>
+                    <button onClick={() => refillStrength(selectedPokemon.name, setSelectedPokemonHP, randomPokemonHP, setRandomPokemonHP)}>Refill Strength</button>
+                  </div>
+                )}
+              </div>
+            )}
+            <h2>VS</h2>
+            {randomPokemon && (
+              <div>
+                <h2>Opponent's Pokemon: {randomPokemon.name}</h2>
+                <div className="hp-bar">
+                  <div className={`hp-bar-inner ${randomPokemonHP <= 50 ? 'low' : ''} ${randomPokemonHP <= 20 ? 'critical' : ''}`} style={{ width: `${randomPokemonHP}%` }}></div>
+                </div>
+                <img className="pokemon-image"
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokemon.id}.png`}
+                  alt={randomPokemon.name}
+                />
+                {battleStarted && (
+                  <div style={{ display: 'flex', flexDirection: 'column' }} className="buttons">
+                    <button onClick={() => attackScratch(randomPokemon.name, selectedPokemonHP, setSelectedPokemonHP)}>Scratch</button>
+                    <button onClick={() => attackGrowl(randomPokemon.name, selectedPokemonHP, setSelectedPokemonHP)}>Growl</button>
+                    <button onClick={() => attackEmber(randomPokemon.name, selectedPokemonHP, setSelectedPokemonHP)}>Ember</button>
+                    <button onClick={() => refillStrength(randomPokemon.name, setRandomPokemonHP, selectedPokemonHP, setSelectedPokemonHP)}>Refill Strength</button>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+        <button style={{ marginTop: '20px', padding: '10px' }} onClick={() => navigate('/pokemons')}>Select another Pokemon</button>
+
+      </Card>
     </>
   );
 }

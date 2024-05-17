@@ -144,7 +144,9 @@ const Pokemon = () => {
         </div>
 
       </Card>
+
       <div className="button-container">
+        <button onClick={() => navigate('/home')}>Reset</button>
         <button onClick={() => navigate('/pokemons')}>Select a new Pokemon</button>
         <button>
           <Link to="/fight" state={{ pokemonID: pokemonInfo.id }} style={{ textDecoration: 'none', color: 'red' }}>
