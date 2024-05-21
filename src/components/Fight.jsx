@@ -165,6 +165,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@mui/material";
 import "./Pokemon.css";
+import { red } from "@mui/material/colors";
 
 function Fight() {
   let { state } = useLocation();
@@ -376,7 +377,7 @@ function Fight() {
                 />
                 {battleStarted && (
                   <div style={{ display: "flex" }} className="buttons">
-                    <button
+                    <button style={{backgroundColor:"lightred"}}
                       onClick={() =>
                         attackScratch(
                           selectedPokemon.name,
@@ -387,7 +388,7 @@ function Fight() {
                     >
                       Scratch
                     </button>
-                    <button
+                    <button style={{backgroundColor:"lightgreen"}}
                       onClick={() =>
                         attackGrowl(
                           selectedPokemon.name,
@@ -398,7 +399,7 @@ function Fight() {
                     >
                       Growl
                     </button>
-                    <button
+                    <button style={{backgroundColor:"yellow"}}
                       onClick={() =>
                         attackEmber(
                           selectedPokemon.name,
@@ -409,7 +410,7 @@ function Fight() {
                     >
                       Ember
                     </button>
-                    <button
+                    <button style={{backgroundColor:"orange"}}
                       onClick={() =>
                         refillStrength(
                           selectedPokemon.name,
@@ -441,6 +442,7 @@ function Fight() {
                     }}
                   ></div>
                 </div>
+
                 <img
                   className="pokemon-image"
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokemon.id}.png`}
@@ -448,10 +450,9 @@ function Fight() {
                 />
                 {battleStarted && (
                   <div
-                    style={{ display: "flex", flexDirection: "column" }}
-                    className="buttons"
-                  >
-                    <button
+                    style={{ display: "flex", flexDirection: "right-column", color:"red"}}
+                    className="buttons">
+                    <button style={{backgroundColor:"red"}}
                       onClick={() =>
                         attackScratch(
                           randomPokemon.name,
@@ -462,7 +463,7 @@ function Fight() {
                     >
                       Scratch
                     </button>
-                    <button
+                    <button style={{backgroundColor:"lightgreen"}}
                       onClick={() =>
                         attackGrowl(
                           randomPokemon.name,
@@ -473,7 +474,9 @@ function Fight() {
                     >
                       Growl
                     </button>
-                    <button
+
+                    
+                    <button style={{backgroundColor:"yellow"}}
                       onClick={() =>
                         attackEmber(
                           randomPokemon.name,
@@ -484,7 +487,7 @@ function Fight() {
                     >
                       Ember
                     </button>
-                    <button
+                    <button style={{backgroundColor:"orange"}}
                       onClick={() =>
                         refillStrength(
                           randomPokemon.name,
