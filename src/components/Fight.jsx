@@ -362,12 +362,12 @@ function Fight() {
             {selectedPokemon && (
               <div>
                 <h2>Your Pokemon: {selectedPokemon.name}</h2>
-                <div className="hp-bar">
+                <div className="hp-bar"style={{marginLeft:"40px",marginRight:"3.1px"}}>
                   <div
                     className={`hp-bar-inner ${
                       selectedPokemonHP <= 50 ? "low" : ""
                     } ${selectedPokemonHP <= 20 ? "critical" : ""}`}
-                    style={{ width: `${selectedPokemonHP}%` }}
+                    style={{ width: `${selectedPokemonHP}%`}}
                   ></div>
                 </div>
                 <img
@@ -378,7 +378,7 @@ function Fight() {
                 {battleStarted && (
 
                   
-                  <div style={{ display: "flex" }} className="buttons">
+                  <div style={{ display: "flex" ,flexDirection:"column"}} className="buttons">
                     <button style={{backgroundColor:"red"}}
                       onClick={() =>
                         attackScratch(
