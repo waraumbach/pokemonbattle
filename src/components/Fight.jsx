@@ -376,8 +376,10 @@ function Fight() {
                   alt={selectedPokemon.name}
                 />
                 {battleStarted && (
+
+                  
                   <div style={{ display: "flex" }} className="buttons">
-                    <button style={{backgroundColor:"lightred"}}
+                    <button style={{backgroundColor:"red"}}
                       onClick={() =>
                         attackScratch(
                           selectedPokemon.name,
