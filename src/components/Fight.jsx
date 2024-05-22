@@ -199,8 +199,7 @@ function Fight() {
   const fetchRandomPokemon = async () => {
     try {
       const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${
-          Math.ceil(Math.random() * 150) + 1
+        `https://pokeapi.co/api/v2/pokemon/${Math.ceil(Math.random() * 150) + 1
         }`
       );
       setRandomPokemon(response.data);
@@ -362,12 +361,11 @@ function Fight() {
             {selectedPokemon && (
               <div>
                 <h2>Your Pokemon: {selectedPokemon.name}</h2>
-                <div className="hp-bar"style={{marginLeft:"40px",marginRight:"3.1px"}}>
+                <div className="hp-bar" style={{ marginLeft: "40px", marginRight: "3.1px" }}>
                   <div
-                    className={`hp-bar-inner ${
-                      selectedPokemonHP <= 50 ? "low" : ""
-                    } ${selectedPokemonHP <= 20 ? "critical" : ""}`}
-                    style={{ width: `${selectedPokemonHP}%`}}
+                    className={`hp-bar-inner ${selectedPokemonHP <= 50 ? "low" : ""
+                      } ${selectedPokemonHP <= 20 ? "critical" : ""}`}
+                    style={{ width: `${selectedPokemonHP}%` }}
                   ></div>
                 </div>
                 <img
@@ -377,9 +375,9 @@ function Fight() {
                 />
                 {battleStarted && (
 
-                  
-                  <div style={{ display: "flex" ,flexDirection:"row"}} className="buttons">
-                    <button style={{backgroundColor:"red"}}
+
+                  <div style={{ display: "flex", flexDirection: "row" }} className="buttons">
+                    <button style={{ backgroundColor: "red", color: "black" }}
                       onClick={() =>
                         attackScratch(
                           selectedPokemon.name,
@@ -390,7 +388,7 @@ function Fight() {
                     >
                       Scratch
                     </button>
-                    <button style={{backgroundColor:"lightgreen"}}
+                    <button style={{ backgroundColor: "lightgreen", color: "black" }}
                       onClick={() =>
                         attackGrowl(
                           selectedPokemon.name,
@@ -401,7 +399,7 @@ function Fight() {
                     >
                       Growl
                     </button>
-                    <button style={{backgroundColor:"yellow"}}
+                    <button style={{ backgroundColor: "yellow", color: "black" }}
                       onClick={() =>
                         attackEmber(
                           selectedPokemon.name,
@@ -412,7 +410,7 @@ function Fight() {
                     >
                       Ember
                     </button>
-                    <button style={{backgroundColor:"orange"}}
+                    <button style={{ backgroundColor: "orange", color: "black" }}
                       onClick={() =>
                         refillStrength(
                           selectedPokemon.name,
@@ -434,9 +432,8 @@ function Fight() {
                 <h2>Opponent's Pokemon: {randomPokemon.name}</h2>
                 <div className="hp-bar">
                   <div
-                    className={`hp-bar-inner ${
-                      randomPokemonHP <= 50 ? "low" : ""
-                    } ${randomPokemonHP <= 20 ? "critical" : ""}`}
+                    className={`hp-bar-inner ${randomPokemonHP <= 50 ? "low" : ""
+                      } ${randomPokemonHP <= 20 ? "critical" : ""}`}
                     style={{
                       width: `${randomPokemonHP}%`,
                       // border: "3px solid black",
@@ -452,9 +449,9 @@ function Fight() {
                 />
                 {battleStarted && (
                   <div
-                    style={{ display: "flex", flexDirection: "right-row", color:"red"}}
+                    style={{ display: "flex", flexDirection: "right-row", color: "red" }}
                     className="buttons">
-                    <button style={{backgroundColor:"red"}}
+                    <button style={{ backgroundColor: "red", color: "black" }}
                       onClick={() =>
                         attackScratch(
                           randomPokemon.name,
@@ -465,7 +462,7 @@ function Fight() {
                     >
                       Scratch
                     </button>
-                    <button style={{backgroundColor:"lightgreen"}}
+                    <button style={{ backgroundColor: "lightgreen", color: "black" }}
                       onClick={() =>
                         attackGrowl(
                           randomPokemon.name,
@@ -477,8 +474,8 @@ function Fight() {
                       Growl
                     </button>
 
-                    
-                    <button style={{backgroundColor:"yellow"}}
+
+                    <button style={{ backgroundColor: "yellow", color: "black" }}
                       onClick={() =>
                         attackEmber(
                           randomPokemon.name,
@@ -489,7 +486,7 @@ function Fight() {
                     >
                       Ember
                     </button>
-                    <button style={{backgroundColor:"orange"}}
+                    <button style={{ backgroundColor: "orange", color: "black" }}
                       onClick={() =>
                         refillStrength(
                           randomPokemon.name,
