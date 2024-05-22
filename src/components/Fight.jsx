@@ -378,7 +378,7 @@ function Fight() {
                 {battleStarted && (
 
                   
-                  <div style={{ display: "flex" ,flexDirection:"column"}} className="buttons">
+                  <div style={{ display: "flex" ,flexDirection:"row"}} className="buttons">
                     <button style={{backgroundColor:"red"}}
                       onClick={() =>
                         attackScratch(
@@ -452,7 +452,7 @@ function Fight() {
                 />
                 {battleStarted && (
                   <div
-                    style={{ display: "flex", flexDirection: "right-column", color:"red"}}
+                    style={{ display: "flex", flexDirection: "right-row", color:"red"}}
                     className="buttons">
                     <button style={{backgroundColor:"red"}}
                       onClick={() =>
